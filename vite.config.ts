@@ -40,7 +40,7 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => defineConfig(
     // [svgBuilder('./src/assets/icons/')] // All svg under src/icons/svg/ have been imported here, no need to import separately
   ],
   server: {
-    open: true,
+    open: false,
     host: '0.0.0.0',
     port: 8080
   },
@@ -62,7 +62,8 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => defineConfig(
       },
     }
   },
-  base: '/',
+  base: '/cloud-web/',
+  publicDir: '/cloud-web/',
   build: {
     target: ['es2015'], // 最低支持 es2015
     sourcemap: true
