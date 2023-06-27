@@ -3,13 +3,18 @@ import { commonColor } from '/@/utils/color'
 // 任务类型
 export enum TaskType {
   Immediate = 0, // 立即执行
-  Single = 1, // 单次定时任务
+  Timed = 1, // 单次定时任务
 }
 
 export const TaskTypeMap = {
   [TaskType.Immediate]: 'Immediate',
-  [TaskType.Single]: 'Timed & One-Time',
+  [TaskType.Timed]: 'Timed',
 }
+
+export const TaskTypeOptions = [
+  { value: TaskType.Immediate, label: TaskTypeMap[TaskType.Immediate] },
+  { value: TaskType.Timed, label: TaskTypeMap[TaskType.Timed] },
+]
 
 // 失控动作
 export enum OutOfControlAction {
@@ -37,6 +42,7 @@ export enum TaskStatus {
   Success = 3, // 完成
   CanCel = 4, // 取消
   Fail = 5, // 失败
+  Paused = 6, // 暂停
 }
 
 export const TaskStatusMap = {
@@ -45,6 +51,8 @@ export const TaskStatusMap = {
   [TaskStatus.Success]: 'Task completed',
   [TaskStatus.CanCel]: 'Task canceled',
   [TaskStatus.Fail]: 'Task failed',
+  [TaskStatus.Paused]: 'Paused',
+
 }
 
 export const TaskStatusColor = {
@@ -53,6 +61,7 @@ export const TaskStatusColor = {
   [TaskStatus.Success]: commonColor.NORMAL,
   [TaskStatus.CanCel]: commonColor.FAIL,
   [TaskStatus.Fail]: commonColor.FAIL,
+  [TaskStatus.Paused]: commonColor.BLUE,
 }
 
 // 任务执行 ws 消息状态
@@ -93,7 +102,7 @@ export const TaskProgressWsStatusMap = {
   [TaskProgressStatus.Failed]: TaskStatus.Fail,
   [TaskProgressStatus.Canceled]: TaskStatus.CanCel,
   [TaskProgressStatus.Timeout]: TaskStatus.Fail,
-  [TaskProgressStatus.Paused]: TaskStatus.Wait,
+  [TaskProgressStatus.Paused]: TaskStatus.Paused,
 }
 
 // 根据媒体文件上传进度信息，前端自己判断出的状态
