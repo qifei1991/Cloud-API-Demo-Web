@@ -379,7 +379,7 @@ export interface DockWorkOsd {
 export interface DockOsd {
   basic_osd: DockBasicOsd,
   link_osd: DockLinkOsd,
-  work_osd: DockWorkOsd  
+  work_osd: DockWorkOsd
 }
 
 export enum EModeCode {
