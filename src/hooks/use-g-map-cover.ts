@@ -57,7 +57,7 @@ export function useGMapCover () {
     AddCoverToMap(pin)
   }
 
-  function AddOverlayGroup (overlayGroup) {
+  function AddOverlayGroup (overlayGroup: any) {
     root.$map.add(overlayGroup)
     coverList.push(overlayGroup)
   }

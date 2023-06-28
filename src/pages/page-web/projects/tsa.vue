@@ -42,7 +42,7 @@
                           :overlayStyle="{width: '200px', height: '300px'}">
                           <div :class="hmsInfo[dock.gateway.sn][0].level === EHmsLevel.CAUTION ? 'caution' :
                             hmsInfo[dock.gateway.sn][0].level === EHmsLevel.WARN ? 'warn' : 'notice'" style="margin-left: 3px; width: 62px; height: 16px;">
-                            <span class="word-loop">{{ hmsInfo[dock.gateway.sn][0].message_en }}</span>
+                            <span class="word-loop">{{ hmsInfo[dock.gateway.sn][0].message_zh }}</span>
                           </div>
                           <template #content>
                             <a-collapse style="background: black; height: 300px; overflow-y: auto;" :bordered="false" expand-icon-position="right" :accordion="true">
@@ -53,7 +53,7 @@
                                 <template #header="{ isActive }">
                                   <div class="flex-row flex-align-center" style="width: 130px;">
                                     <div style="width: 110px;">
-                                      <span class="word-loop">{{ hms.message_en }}</span>
+                                      <span class="word-loop">{{ hms.message_zh }}</span>
                                     </div>
                                     <div style="width: 20px; height: 15px; font-size: 10px; z-index: 2 " class="flex-row flex-align-center flex-justify-center"
                                       :class="hms.level === EHmsLevel.CAUTION ? 'caution' : hms.level === EHmsLevel.WARN ? 'warn' : 'notice'"
@@ -92,7 +92,7 @@
                           :overlayStyle="{width: '200px', height: '300px'}">
                           <div :class="hmsInfo[dock.sn][0].level === EHmsLevel.CAUTION ? 'caution' :
                             hmsInfo[dock.sn][0].level === EHmsLevel.WARN ? 'warn' : 'notice'" style="margin-left: 3px; width: 62px; height: 16px;">
-                            <span class="word-loop">{{ hmsInfo[dock.sn][0].message_en }}</span>
+                            <span class="word-loop">{{ hmsInfo[dock.sn][0].message_zh }}</span>
                           </div>
                           <template #content>
                             <a-collapse style="background: black; height: 300px; overflow-y: auto;" :bordered="false" expand-icon-position="right" :accordion="true">
@@ -103,7 +103,7 @@
                                 <template #header="{ isActive }">
                                   <div class="flex-row flex-align-center" style="width: 130px;">
                                     <div style="width: 110px;">
-                                      <span class="word-loop">{{ hms.message_en }}</span>
+                                      <span class="word-loop">{{ hms.message_zh }}</span>
                                     </div>
                                     <div style="width: 20px; height: 15px; font-size: 10px; z-index: 2 " class="flex-row flex-align-center flex-justify-center"
                                       :class="hms.level === EHmsLevel.CAUTION ? 'caution' : hms.level === EHmsLevel.WARN ? 'warn' : 'notice'"

@@ -324,13 +324,16 @@ async function onUploadMediaFileNow (jobId: string) {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .plan-panel-wrapper {
   width: 100%;
   padding: 16px;
   .plan-table {
     background: #fff;
     margin-top: 10px;
+    /*td {
+      white-space: break-spaces;
+    }*/
   }
   .action-area {
 

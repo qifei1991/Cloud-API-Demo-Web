@@ -246,7 +246,7 @@ const onStart = async () => {
   switch (livetypeSelected.value) {
     case 1: {
       // RTMP
-      liveURL = config.rtmpURL + timestamp
+      liveURL = config.rtmpURL + droneSelected.value
       break
     }
     case 2: {
