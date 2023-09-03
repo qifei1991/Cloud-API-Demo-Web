@@ -331,9 +331,9 @@ async function onUploadMediaFileNow (jobId: string) {
   .plan-table {
     background: #fff;
     margin-top: 10px;
-    /*td {
+    td {
       white-space: break-spaces;
-    }*/
+    }
   }
   .action-area {
 

@@ -279,7 +279,9 @@
               </a-col>
             </a-row>
             <!-- 机场控制面板 -->
-            <DockControlPanel v-if="dockControlPanelVisible" :sn="osdVisible.gateway_sn"  :deviceInfo="deviceInfo" @close-control-panel="onCloseControlPanel">
+            <DockControlPanel v-if="dockControlPanelVisible" :sn="osdVisible.gateway_sn"
+                              :modeCode="deviceInfo.dock.basic_osd?.mode_code" :deviceInfo="deviceInfo"
+                              @close-control-panel="onCloseControlPanel">
             </DockControlPanel>
         </div>
       </div>

@@ -126,6 +126,7 @@ import { getRoot } from '/@/root'
 import { TaskType, OutOfControlActionOptions, OutOfControlAction, TaskTypeOptions } from '/@/types/task'
 import moment, { Moment } from 'moment'
 import { RuleObject } from 'ant-design-vue/es/form/interface'
+import { WaylineLostControlActionInCommandFlight } from '/@/api/drone-control/drone'
 
 const root = getRoot()
 const store = useMyStore()
@@ -151,6 +152,7 @@ const planBody = reactive({
   select_execute_time: undefined as Moment| undefined,
   rth_altitude: '',
   out_of_control_action: OutOfControlAction.ReturnToHome,
+  exit_wayline_when_rc_lost: WaylineLostControlActionInCommandFlight.EXEC_LOST_ACTION
 })
 
 const drawerVisible = ref(false)

@@ -4,7 +4,7 @@
       style="width: 17vw; height: 10vw; margin-bottom: 50px"
       :src="djiLogo"
     />
-    <p class="logo fz35 pb50">Pilot Cloud API Demo</p>
+    <p class="logo fz35 pb50">Pilot Cloud API Platform</p>
     <a-form
       layout="inline"
       :model="formState"
@@ -58,8 +58,8 @@ import djiLogo from '/@/assets/icons/dji_logo.png'
 const root = getRoot()
 
 const formState: UnwrapRef<LoginBody> = reactive({
-  username: 'pilot',
-  password: 'pilot123',
+  username: '',
+  password: '',
   flag: EUserType.Pilot,
 })
 const isVerified = ref<boolean>(false)

@@ -2,6 +2,7 @@ import { message } from 'ant-design-vue'
 import { ref } from 'vue'
 import { postSendCmd } from '/@/api/device-cmd'
 import { DeviceCmd, DeviceCmdItemAction } from '/@/types/device-cmd'
+import { EDockModeCode } from '/@/types/device'
 
 export function useDockControl () {
   const dockControlPanelVisible = ref(false)
@@ -45,8 +46,10 @@ export function useDockControl () {
   }
 
   // 控制面板关闭
-  async function onCloseControlPanel (sn: string) {
-    await dockDebugOnOff(sn, false)
+  async function onCloseControlPanel (sn: string, modeCode: number) {
+    if (modeCode === EDockModeCode.Remote_Debugging) {
+      await dockDebugOnOff(sn, false)
+    }
     setDockControlPanelVisible(false)
   }
 

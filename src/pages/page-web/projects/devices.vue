@@ -1,11 +1,11 @@
 
 <template>
   <a-menu v-model:selectedKeys="current" mode="horizontal" @select="select">
-    <a-menu-item :key="EDeviceTypeName.Aircraft" class="ml20">
-      Aircraft
-    </a-menu-item>
-    <a-menu-item :key="EDeviceTypeName.Dock">
+    <a-menu-item :key="EDeviceTypeName.Dock" class="ml20">
       Dock
+    </a-menu-item>
+    <a-menu-item :key="EDeviceTypeName.Aircraft">
+      Aircraft
     </a-menu-item>
   </a-menu>
   <div class="device-table-wrap table flex-display flex-column">
@@ -83,7 +83,6 @@
           </div>
         </div>
       </template>
-
     </a-table>
     <a-modal v-model:visible="deleteTip" width="450px" :closable="false" centered :okButtonProps="{ danger: true }" @ok="unbind">
         <p class="pt10 pl20" style="height: 50px;">Delete device from workspace?</p>
@@ -245,7 +244,7 @@ type Pagination = TableState['pagination']
 
 const workspaceId: string = localStorage.getItem(ELocalStorageKey.WorkspaceId) || ''
 const editableData: UnwrapRef<Record<string, Device>> = reactive({})
-const current = ref([EDeviceTypeName.Aircraft])
+const current = ref([EDeviceTypeName.Dock])
 
 function judgeCurrentType (type: EDeviceTypeName): boolean {
   return current.value.indexOf(type) !== -1
