@@ -118,13 +118,13 @@ const workspaceId = localStorage.getItem(ELocalStorageKey.WorkspaceId)!
 const body: IPage = {
   page: 1,
   total: 0,
-  page_size: 50
+  page_size: 20
 }
 const paginationProp = reactive({
   pageSizeOptions: ['20', '50', '100'],
   showQuickJumper: true,
   showSizeChanger: true,
-  pageSize: 50,
+  pageSize: 20,
   current: 1,
   total: 0
 })
@@ -331,9 +331,11 @@ async function onUploadMediaFileNow (jobId: string) {
   .plan-table {
     background: #fff;
     margin-top: 10px;
+    td {
+      white-space: break-spaces;
+    }
   }
   .action-area {
-
     &::v-deep {
       .ant-btn {
         margin-right: 10px;

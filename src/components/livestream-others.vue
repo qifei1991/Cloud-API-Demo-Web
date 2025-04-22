@@ -250,31 +250,7 @@ const onStart = async () => {
   videoId.value =
     droneSelected.value + '/' + cameraSelected.value + '/' + (videoSelected.value || nonSwitchable + '-0')
 
-  let liveURL = ''
-  switch (livetypeSelected.value) {
-    case 1: {
-      // RTMP
-      liveURL = config.rtmpURL + timestamp
-      break
-    }
-    case 2: {
-      // RTSP
-      liveURL = `userName=${config.rtspUserName}&password=${config.rtspPassword}&port=${config.rtspPort}`
-      break
-    }
-    case 3: {
-      liveURL = `serverIP=${config.gbServerIp}&serverPort=${config.gbServerPort}&serverID=${config.gbServerId}&agentID=${config.gbAgentId}&agentPassword=${config.gbPassword}&localPort=${config.gbAgentPort}&channel=${config.gbAgentChannel}`
-      break
-    }
-    case 4: {
-      break
-    }
-    default:
-      console.warn('warning: live type is not correct!!!')
-      break
-  }
   await startLivestream({
-    url: liveURL,
     video_id: videoId.value,
     url_type: livetypeSelected.value,
     video_quality: claritySelected.value

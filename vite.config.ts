@@ -62,7 +62,8 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => defineConfig(
       },
     }
   },
-  base: '/',
+  base: '/wrj/cloud-web/',
+  publicDir: '/wrj/cloud-web/',
   build: {
     target: ['es2015'], // 最低支持 es2015
     sourcemap: true

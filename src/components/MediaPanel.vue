@@ -80,13 +80,13 @@ const columns = [
 const body: IPage = {
   page: 1,
   total: 0,
-  page_size: 50
+  page_size: 20
 }
 const paginationProp = reactive({
   pageSizeOptions: ['20', '50', '100'],
   showQuickJumper: true,
   showSizeChanger: true,
-  pageSize: 50,
+  pageSize: 20,
   current: 1,
   total: 0
 })

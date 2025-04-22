@@ -488,6 +488,7 @@ export enum EDockModeCode {
   Remote_Debugging,
   Upgrading,
   Working,
+  To_Be_CalibratedWorking,
 }
 
 export interface DeviceHms {

@@ -61,7 +61,7 @@ export function useGMapCover () {
     AddCoverToMap(pin)
   }
 
-  function AddOverlayGroup (overlayGroup) {
+  function AddOverlayGroup (overlayGroup: any) {
     root.$map.add(overlayGroup)
     const id = overlayGroup.getExtData().id
     coverMap[id] = [...(coverMap[id] || []), overlayGroup]
