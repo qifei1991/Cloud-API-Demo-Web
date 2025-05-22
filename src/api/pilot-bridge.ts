@@ -3,6 +3,8 @@ import { EComponentName, EPhotoType, ERouterName } from '../types'
 import { CURRENT_CONFIG } from './http/config'
 import { EVideoPublishType, LiveStreamStatus } from '../types/live-stream'
 import { getRoot } from '/@/root'
+import { getWebsocketUrl } from '/@/websocket/util/config'
+import { consoleLog } from '/@/utils/logger'
 
 const root = getRoot()
 export const components = new Map()
@@ -94,8 +96,9 @@ export default {
       elementPreName: 'PILOT'
     }
     components.set(EComponentName.Map, mapParam)
+    consoleLog('WsParam.host:', getWebsocketUrl())
     const wsParam: WsParam = {
-      host: CURRENT_CONFIG.websocketURL,
+      host: getWebsocketUrl(),
       token: '',
       connectCallback: 'wsConnectCallback'
     }
@@ -192,20 +195,21 @@ export default {
 
   // liveshare
   /**
-   *
-   * @param type
+   * <pre>
    * video-on-demand: 服务器点播，依赖于thing模块，具体的点播命令参见设备物模型的直播服务
    * video-by-manual：手动点播，配置好直播类型参数之后，在图传页面可修改直播参数，停止直播
    * video-demand-aux-manual: 混合模式，支持服务器点播，以及图传页面修改直播参数，停止直播
+   * </pre>
+   * @param type live type
    */
   setVideoPublishType (type:string): boolean {
     return returnBool(window.djiBridge.liveshareSetVideoPublishType(type))
   },
 
   /**
+   * type: liveshare type， 0：unknown, 1:agora, 2:rtmp, 3:rtsp, 4:gb28181
    *
    * @returns
-   * type: liveshare type， 0：unknown, 1:agora, 2:rtmp, 3:rtsp, 4:gb28181
    */
   getLiveshareConfig (): string {
     return returnString(window.djiBridge.liveshareGetConfig())

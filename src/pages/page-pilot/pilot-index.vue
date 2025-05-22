@@ -54,6 +54,7 @@ import router from '/@/router'
 import { EComponentName, ELocalStorageKey, ERouterName, EUserType } from '/@/types'
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
 import djiLogo from '/@/assets/icons/dji_logo.png'
+import { getApiBaseUrl } from '/@/websocket/util/config'
 
 const root = getRoot()
 
@@ -63,6 +64,8 @@ const formState: UnwrapRef<LoginBody> = reactive({
   flag: EUserType.Pilot,
 })
 const isVerified = ref<boolean>(false)
+const apiUrl = getApiBaseUrl()
+console.log('>> apiUrl: ' + apiUrl)
 onMounted(async () => {
   verifyLicense()
   if (!isVerified.value) {
@@ -76,7 +79,7 @@ onMounted(async () => {
     await refreshToken({})
       .then(res => {
         apiPilot.setComponentParam(EComponentName.Api, {
-          host: CURRENT_CONFIG.baseURL,
+          host: apiUrl,
           token: res.data.access_token
         })
         const jsres = apiPilot.loadComponent(EComponentName.Api, apiPilot.getComponentParam(EComponentName.Api))
@@ -103,7 +106,7 @@ const onSubmit = async (e: any) => {
       console.log('login res:', res)
       if (res.code === 0) {
         apiPilot.setComponentParam(EComponentName.Api, {
-          host: CURRENT_CONFIG.baseURL,
+          host: apiUrl,
           token: res.data.access_token
         })
         const jsres = apiPilot.loadComponent(

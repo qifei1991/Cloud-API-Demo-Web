@@ -6,12 +6,12 @@ export const CURRENT_CONFIG = {
   appLicense: 'Q798DvMCbkOoUhtMJSTOa9J558re0FhO7G4+ah/JJxzJTWclebjvPYsL0zluvgmkf69CTcUzoO27jXySiI0Z9uRnRnDXRnuOonW8BTb7qZ7al0BPCSkqBar3+YaSfxdVNB3jWfYFVHAj6caBiKHLsAlS5bLE2WiZ2w0rii7y+iw=', // You need to go to the development website to apply.
 
   // http
-  baseURL: '/wrj/cloud-service/', // This url must end with "/". Example: 'http://192.168.1.1:6789/'
-  websocketURL: '/wrj/cloud-service/api/v1/ws', // Example: 'ws://192.168.1.1:6789/api/v1/ws'
+  baseURL: import.meta.env.VITE_APP_API_BACKEND_URL, // This url must end with "/". Example: 'http://192.168.1.1:6789/'
+  websocketURL: import.meta.env.VITE_APP_API_WS_URL, // Example: 'ws://192.168.1.1:6789/api/v1/ws'
 
   // livestreaming
   // RTMP  Note: This IP is the address of the streaming server. If you want to see livestream on web page, you need to convert the RTMP stream to WebRTC stream.
-  rtmpURL: '/uav-flv/', // Example: 'rtmp://192.168.1.1/live/'
+  rtmpURL: import.meta.env.VITE_LIVE_RTMP_URL, // Example: 'rtmp://192.168.1.1/live/'
   // GB28181 Note:If you don't know what these parameters mean, you can go to Pilot2 and select the GB28181 page in the cloud platform. Where the parameters same as these parameters.
   gbServerIp: 'Please enter the server ip.',
   gbServerPort: 'Please enter the server port.',

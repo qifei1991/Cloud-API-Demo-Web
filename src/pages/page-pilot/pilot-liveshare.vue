@@ -218,7 +218,7 @@ onMounted(() => {
   liveStreamStatus.type = config.type
   refreshLiveType()
 
-  window.liveStatusCallback = arg => {
+  window.liveStatusCallback = (arg: LiveStreamStatus) => {
     liveStatusCallback(arg)
   }
 })

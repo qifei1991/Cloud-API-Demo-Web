@@ -28,7 +28,7 @@
                   <span :key="m.state" :class="m.state.value === EStatusValue.CONNECTED ? 'green' : 'red'">{{ m.state.value }}&nbsp;</span>
                   <a-button-group >
                   <a-button class="ml5" type="primary" size="small" @click.stop="moduleInstall(m)">install</a-button>
-                  <a-button class="ml5 mr5" type="danger" size="small" @click.stop="moduleUninstall(m)">uninstall</a-button>
+                  <a-button class="ml5 mr5" type="primary" danger size="small" @click.stop="moduleUninstall(m)">uninstall</a-button>
                   </a-button-group>
                 </div>
                 <a-divider />
@@ -120,18 +120,18 @@
   </a-layout>
 </template>
 <script lang="ts" setup>
-import { message, Popconfirm } from 'ant-design-vue'
-import { onMounted, onUnmounted, reactive, ref, watch } from 'vue'
-import { CURRENT_CONFIG } from '/@/api/http/config'
+import { message } from 'ant-design-vue'
+import { onMounted, reactive, ref } from 'vue'
 import { BindBody, bindDevice, getDeviceBySn, getPlatformInfo, getUserInfo } from '/@/api/manage'
 import apiPilot, { ApiParam, MapParam, ThingParam, WsParam } from '/@/api/pilot-bridge'
 import { getRoot } from '/@/root'
 import { EBizCode, EComponentName, EDownloadOwner, ELocalStorageKey, ERouterName, EStatusValue } from '/@/types'
 import cloudapi from '/@/assets/icons/cloudapi.png'
-import { RightOutlined, CloudOutlined, CloudSyncOutlined, SyncOutlined } from '@ant-design/icons-vue'
+import { RightOutlined, CloudSyncOutlined, SyncOutlined } from '@ant-design/icons-vue'
 import { useMyStore } from '/@/store'
 import { DeviceStatus } from '/@/types/device'
 import { useConnectWebSocket } from '/@/hooks/use-connect-websocket'
+import { consoleLog } from '/@/utils/logger'
 
 const root = getRoot()
 const gatewayState = ref<boolean>(localStorage.getItem(ELocalStorageKey.GatewayOnline) === 'true')
@@ -259,6 +259,8 @@ onMounted(() => {
   window.wsConnectCallback = (arg: any) => {
     wsConnectCallback(arg)
   }
+  window.liveStatusCallback = (arg: any) => {}
+
   device.data.gateway_sn = apiPilot.getRemoteControllerSN()
   if (device.data.gateway_sn === EStatusValue.DISCONNECT.toString()) {
     message.warn('Data is not available, please restart the remote control.')
@@ -428,12 +430,11 @@ function setWorkspaceInfo () {
 }
 
 function refreshStatus () {
+  consoleLog('>> wsGetConnectState', apiPilot.wsGetConnectState())
   thingState.value = apiPilot.thingGetConnectState() ? EStatusValue.CONNECTED : EStatusValue.DISCONNECT
   apiState.value = apiPilot.isComponentLoaded(EComponentName.Api) ? EStatusValue.CONNECTED : EStatusValue.DISCONNECT
   liveState.value = apiPilot.isComponentLoaded(EComponentName.Liveshare) ? EStatusValue.CONNECTED : EStatusValue.DISCONNECT
-  wsState.value = apiPilot.isComponentLoaded(EComponentName.Ws) && apiPilot.wsGetConnectState()
-    ? EStatusValue.CONNECTED
-    : EStatusValue.DISCONNECT
+  wsState.value = apiPilot.isComponentLoaded(EComponentName.Ws) && apiPilot.wsGetConnectState() ? EStatusValue.CONNECTED : EStatusValue.DISCONNECT
   mapState.value = apiPilot.isComponentLoaded(EComponentName.Map) ? EStatusValue.CONNECTED : EStatusValue.DISCONNECT
   tsaState.value = apiPilot.isComponentLoaded(EComponentName.Tsa) ? EStatusValue.CONNECTED : EStatusValue.DISCONNECT
   mediaState.value = apiPilot.isComponentLoaded(EComponentName.Media) ? EStatusValue.CONNECTED : EStatusValue.DISCONNECT
